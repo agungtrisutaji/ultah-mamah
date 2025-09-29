@@ -10,25 +10,19 @@ interface Photo {
   caption: string;
 }
 
-// Photos of Mama - menggunakan foto asli yang sudah ada
+// Real photos of mama
 const mamaPhotos: Photo[] = [
   {
     id: 1,
-    src: '/photos/mom-me.png',
-    alt: 'Foto bersama Mama tersayang',
-    caption: 'Momen indah bersama Mama tercinta 💕',
-  },
-  {
-    id: 2,
     src: '/photos/mom.png',
-    alt: 'Mama cantik',
+    alt: 'Mama tersenyum',
     caption: 'Senyum Mama yang selalu menghangatkan hati ☺️',
   },
   {
-    id: 3,
+    id: 2,
     src: '/photos/best-mom.png',
     alt: 'Mama terbaik di dunia',
-    caption: 'Mama terbaik yang pernah ada di dunia ini! 👑',
+    caption: 'Mama terbaik di dunia! Terima kasih untuk segalanya 👑',
   },
 ];
 
@@ -53,7 +47,7 @@ export default function PhotoGallery() {
         {mamaPhotos.map((photo) => (
           <div key={photo.id} className="group cursor-pointer" onClick={() => openModal(photo)}>
             <div className="relative overflow-hidden rounded-xl shadow-lg aspect-square border-2 border-pink-200 hover:border-pink-300 transition-all duration-300 group-hover:scale-105">
-              {/* Actual photo */}
+              {/* Real photo */}
               <Image
                 src={photo.src}
                 alt={photo.alt}
@@ -102,14 +96,14 @@ export default function PhotoGallery() {
                 </button>
               </div>
               
-              {/* Actual photo in modal */}
+              {/* Real photo */}
               <div className="relative aspect-square rounded-xl overflow-hidden border-2 border-pink-200 mb-4">
                 <Image
                   src={selectedPhoto.src}
                   alt={selectedPhoto.alt}
                   fill
                   className="object-cover"
-                  sizes="(max-width: 768px) 90vw, 50vw"
+                  sizes="(max-width: 768px) 90vw, (max-width: 1200px) 70vw, 50vw"
                 />
               </div>
               
@@ -127,14 +121,13 @@ export default function PhotoGallery() {
         </div>
       )}
 
-      {/* Gallery info */}
-      <div className="mt-12 bg-pink-50 border border-pink-200 rounded-xl p-6">
-        <h3 className="text-lg font-semibold text-pink-800 mb-3">� Gallery Kenangan Mama</h3>
-        <div className="text-pink-700 space-y-2 text-sm">
-          <p>✨ Klik foto untuk melihat dalam ukuran besar</p>
-          <p>💕 Setiap foto menyimpan kenangan indah bersama Mama tercinta</p>
-          <p>🤲 Meski jauh, kenangan ini selalu menghangatkan hati anak</p>
-        </div>
+      {/* Photo information */}
+      <div className="mt-12 bg-green-50 border border-green-200 rounded-xl p-6">
+        <h3 className="text-lg font-semibold text-green-800 mb-3">� Kenangan Indah Bersama Mama</h3>
+        <p className="text-green-700 text-sm">
+          Setiap foto ini menyimpan kenangan berharga yang tak akan pernah terlupakan. 
+          Meski jarak memisahkan, cinta dan kerinduan untuk Mama tetap sama. ✨
+        </p>
       </div>
     </div>
   );
