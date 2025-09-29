@@ -24,6 +24,12 @@ const mamaPhotos: Photo[] = [
     alt: 'Mama terbaik di dunia',
     caption: 'Mama terbaik di dunia! Terima kasih untuk segalanya 👑',
   },
+  {
+    id: 3,
+    src: '/photos/mom-me.png',
+    alt: 'Mama dan aku',
+    caption: 'Kenangan indah bersama Mama tercinta 💕',
+  },
 ];
 
 export default function PhotoGallery() {
@@ -46,21 +52,32 @@ export default function PhotoGallery() {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {mamaPhotos.map((photo) => (
           <div key={photo.id} className="group cursor-pointer" onClick={() => openModal(photo)}>
-            <div className="relative overflow-hidden rounded-xl shadow-lg aspect-square border-2 border-pink-200 hover:border-pink-300 transition-all duration-300 group-hover:scale-105">
-              {/* Real photo */}
+            <div className="relative overflow-hidden rounded-xl shadow-lg aspect-square border-2 border-pink-200 hover:border-pink-300 transition-all duration-300 group-hover:scale-105 bg-gray-100">
+              {/* Real photo with priority loading */}
               <Image
                 src={photo.src}
                 alt={photo.alt}
                 fill
-                className="object-cover"
+                className="object-cover transition-opacity duration-300"
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                priority={true}
+                placeholder="blur"
+                blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkrHB0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyg==wUrAPy+E=/"
+                onError={() => {
+                  console.error('Image failed to load:', photo.src);
+                }}
               />
               
+              {/* Loading placeholder */}
+              <div className="absolute inset-0 bg-gradient-to-br from-pink-100 to-purple-100 animate-pulse flex items-center justify-center">
+                <div className="text-pink-400 text-4xl">📷</div>
+              </div>
+              
               {/* Overlay on hover */}
-              <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
+              <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center z-10">
                 <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <div className="bg-white/90 backdrop-blur-sm rounded-lg px-4 py-2">
-                    <p className="text-gray-800 text-sm font-medium">Lihat Foto</p>
+                    <p className="text-gray-800 text-sm font-medium">Klik untuk Perbesar</p>
                   </div>
                 </div>
               </div>
