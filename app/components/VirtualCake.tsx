@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 
 export default function VirtualCake() {
-  const [candlesLit, setCandlesLit] = useState([true, true, true, true, true]);
+  const [candlesLit, setCandlesLit] = useState([true, true, true]);
   const [showCelebration, setShowCelebration] = useState(false);
   const [wishMade, setWishMade] = useState(false);
 
@@ -14,7 +14,7 @@ export default function VirtualCake() {
     setCandlesLit(newCandlesLit);
 
     // Check if all candles are blown out
-    const allBlownOut = newCandlesLit.every(candle => !candle);
+    const allBlownOut = newCandlesLit.every((candle) => !candle);
     if (allBlownOut && !wishMade) {
       setShowCelebration(true);
       setWishMade(true);
@@ -26,13 +26,13 @@ export default function VirtualCake() {
   };
 
   const lightAllCandles = () => {
-    setCandlesLit([true, true, true, true, true]);
+    setCandlesLit([true, true, true]);
     setShowCelebration(false);
     setWishMade(false);
   };
 
   const blowAllCandles = () => {
-    setCandlesLit([false, false, false, false, false]);
+    setCandlesLit([false, false, false]);
     if (!wishMade) {
       setShowCelebration(true);
       setWishMade(true);
@@ -59,8 +59,8 @@ export default function VirtualCake() {
         </div>
       )}
 
-      <h2 className='text-3xl md:text-4xl font-bold mb-6 text-transparent bg-gradient-to-r from-pink-600 to-orange-600 bg-clip-text'>
-        🎂 Kue Ulang Tahun Virtual dari Agung yang Jauh
+      <h2 className='text-3xl md:text-4xl font-bold text-transparent bg-gradient-to-r from-pink-600 to-orange-600 bg-clip-text'>
+        🎂 Kue Ulang Tahun Virtual dari Agung
       </h2>
 
       <div className='relative inline-block mb-8'>
@@ -71,17 +71,17 @@ export default function VirtualCake() {
             alt='Birthday Cake'
             width={200}
             height={200}
-            className='w-32 h-32 md:w-48 md:h-48'
+            className='w-80 h-80 md:w-102 md:h-102'
           />
         </div>
 
-        {/* Candles */}
-        <div className='absolute top-8 md:top-12 left-1/2 transform -translate-x-1/2 flex gap-1 md:gap-2'>
+        {/* Candles - 3 lilin sesuai permintaan */}
+        <div className='absolute top-16 md:top-20 left-1/2 transform -translate-x-1/2 flex gap-2 md:gap-4'>
           {candlesLit.map((isLit, index) => (
             <button
               key={index}
               onClick={() => blowCandle(index)}
-              className={`text-2xl md:text-3xl hover:scale-110 transition-all duration-300 ${
+              className={`text-4xl md:text-5xl hover:scale-110 transition-all duration-300 ${
                 isLit ? 'animate-pulse' : ''
               }`}
               title={
@@ -99,7 +99,7 @@ export default function VirtualCake() {
         <p className='text-lg text-gray-700 mb-6'>
           {candlesLit.every((candle) => !candle)
             ? 'Semua lilin sudah padam! Agung ikut mendoakan dari jauh agar semua permintaan Mama dikabulkan 💫'
-            : 'Meskipun Agung tidak bisa meniup lilin bersama Mama, semoga kue virtual ini bisa sedikit menghibur... Klik lilin untuk meniupnya!'}
+            : 'Meskipun Agung ga bisa tiup lilin bareng Mama, semoga kue virtual ini bisa sedikit menghibur... Klik lilin untuk meniupnya!'}
         </p>
 
         <div className='flex flex-col sm:flex-row gap-4 justify-center'>
@@ -121,7 +121,7 @@ export default function VirtualCake() {
       {/* Birthday wishes */}
       <div className='mt-8 p-4 bg-pink-50 rounded-xl border border-pink-200'>
         <h3 className='text-lg font-semibold text-pink-800 mb-3'>
-          💝 Doa Agung untuk Mama dari Kejauhan
+          💝 Doa Agung untuk Mama
         </h3>
         <div className='text-sm text-pink-700 space-y-2'>
           <p>• Ya Allah, berikan kesehatan dan kekuatan untuk Mama</p>
