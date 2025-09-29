@@ -1,36 +1,65 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🎂 Website Ulang Tahun Mama Tersayang
 
-## Getting Started
+Website ulang tahun interaktif yang dibuat dengan ❤️ untuk mama tercinta menggunakan Next.js 15.5.4 dan Tailwind CSS.
 
-First, run the development server:
+## ✨ Fitur-Fitur
+
+- **🎉 Halaman Ucapan Utama** - Ucapan ulang tahun yang indah dengan animasi floating hearts
+- **⏰ Countdown Timer** - Hitung mundur menuju hari ulang tahun (30 September 2025)
+- **🎂 Virtual Birthday Cake** - Kue virtual interaktif dengan lilin yang bisa ditiup
+- **📸 Photo Gallery** - Gallery foto kenangan (dengan placeholder untuk foto asli)
+- **📱 Responsive Design** - Terlihat cantik di semua device
+
+## 🚀 Cara Menjalankan
 
 ```bash
+# Install dependencies
+npm install
+
+# Jalankan development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+# Buka http://localhost:3000 di browser
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 📷 Cara Menambahkan Foto Asli
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Simpan foto-foto mama di folder `public/photos/`
+2. Beri nama file: `mama-1.jpg`, `mama-2.jpg`, dst.
+3. Edit file `app/components/PhotoGallery.tsx` dan update array `placeholderPhotos`
+4. Ganti `src: '/photos/placeholder-X.jpg'` dengan `src: '/photos/mama-X.jpg'`
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🎨 Kustomisasi
 
-## Learn More
+- **Warna tema**: Edit gradients di `app/page.tsx` dan komponen lainnya
+- **Pesan ucapan**: Edit teks di `app/page.tsx`
+- **Tanggal ulang tahun**: Edit di `app/components/CountdownTimer.tsx`
 
-To learn more about Next.js, take a look at the following resources:
+## 📦 Deployment
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Website ini siap untuk deploy ke:
+- ✅ Vercel (Recommended)
+- ✅ Netlify  
+- ✅ Firebase Hosting
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Deploy ke Vercel:
+1. Push code ke GitHub
+2. Connect GitHub repo ke Vercel
+3. Deploy automatically! 🚀
 
-## Deploy on Vercel
+## 🛠️ Tech Stack
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **Framework**: Next.js 15.5.4 (App Router)
+- **Styling**: Tailwind CSS v4
+- **Language**: TypeScript
+- **Deployment**: Vercel
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 💝 Dibuat dengan Cinta
+
+Website ini dibuat khusus untuk merayakan hari istimewa mama tercinta. Semoga mama suka! 
+
+**Happy Birthday, Ma! 🎉🎂❤️**
+
+---
+
+*Made with ❤️ by your loving children • September 2025*
