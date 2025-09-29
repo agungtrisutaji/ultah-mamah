@@ -10,43 +10,25 @@ interface Photo {
   caption: string;
 }
 
-// Photos array - real photos will be displayed when available
-const photos: Photo[] = [
+// Photos of Mama - menggunakan foto asli yang sudah ada
+const mamaPhotos: Photo[] = [
   {
     id: 1,
     src: '/photos/mom-me.png',
-    alt: 'Foto kenangan dengan Mama',
-    caption: 'Momen indah bersama Mama tersayang 💕',
+    alt: 'Foto bersama Mama tersayang',
+    caption: 'Momen indah bersama Mama tercinta 💕',
   },
   {
     id: 2,
     src: '/photos/mom.png',
-    alt: 'Mama saat tersenyum',
+    alt: 'Mama cantik',
     caption: 'Senyum Mama yang selalu menghangatkan hati ☺️',
   },
   {
     id: 3,
     src: '/photos/best-mom.png',
     alt: 'Mama terbaik di dunia',
-    caption: 'Mama terbaik yang pernah ada! �',
-  },
-  {
-    id: 4,
-    src: '/photos/placeholder-4.jpg',
-    alt: 'Foto keluarga',
-    caption: 'Kebersamaan keluarga yang tak ternilai 👨‍👩‍👧‍👦',
-  },
-  {
-    id: 5,
-    src: '/photos/placeholder-5.jpg',
-    alt: 'Ulang tahun sebelumnya',
-    caption: 'Ulang tahun tahun lalu yang tak terlupakan 🎂',
-  },
-  {
-    id: 6,
-    src: '/photos/placeholder-6.jpg',
-    alt: 'Mama dan anak-anak',
-    caption: 'Mama dan anak-anaknya yang bahagia 🥰',
+    caption: 'Mama terbaik yang pernah ada di dunia ini! 👑',
   },
 ];
 
@@ -68,36 +50,20 @@ export default function PhotoGallery() {
       </h2>
       
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {photos.map((photo) => (
+        {mamaPhotos.map((photo) => (
           <div key={photo.id} className="group cursor-pointer" onClick={() => openModal(photo)}>
-            <div className="relative overflow-hidden rounded-xl shadow-lg bg-gradient-to-br from-pink-100 to-purple-100 aspect-square border-2 border-pink-200 hover:border-pink-300 transition-all duration-300 group-hover:scale-105">
-              {/* Check if photo exists */}
-              {photo.src.includes('placeholder') ? (
-                // Show placeholder for missing photos
-                <div className="flex items-center justify-center h-full">
-                  <div className="text-center p-6">
-                    <div className="text-4xl mb-3">📷</div>
-                    <p className="text-gray-600 text-sm font-medium">
-                      Foto {photo.id}
-                    </p>
-                    <p className="text-gray-500 text-xs mt-1">
-                      Belum ada foto
-                    </p>
-                  </div>
-                </div>
-              ) : (
-                // Show actual photo
-                <Image
-                  src={photo.src}
-                  alt={photo.alt}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                />
-              )}
+            <div className="relative overflow-hidden rounded-xl shadow-lg aspect-square border-2 border-pink-200 hover:border-pink-300 transition-all duration-300 group-hover:scale-105">
+              {/* Actual photo */}
+              <Image
+                src={photo.src}
+                alt={photo.alt}
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              />
               
               {/* Overlay on hover */}
-              <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300 flex items-center justify-center">
+              <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
                 <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <div className="bg-white/90 backdrop-blur-sm rounded-lg px-4 py-2">
                     <p className="text-gray-800 text-sm font-medium">Lihat Foto</p>
@@ -136,31 +102,15 @@ export default function PhotoGallery() {
                 </button>
               </div>
               
-              {/* Photo display */}
-              <div className="relative bg-gradient-to-br from-pink-100 to-purple-100 aspect-square rounded-xl border-2 border-pink-200 mb-4 overflow-hidden">
-                {selectedPhoto.src.includes('placeholder') ? (
-                  // Show placeholder for missing photos
-                  <div className="flex items-center justify-center h-full">
-                    <div className="text-center">
-                      <div className="text-6xl mb-4">📷</div>
-                      <p className="text-gray-600 font-medium">
-                        Foto {selectedPhoto.id}
-                      </p>
-                      <p className="text-gray-500 text-sm mt-2 max-w-xs">
-                        Belum ada foto untuk slot ini
-                      </p>
-                    </div>
-                  </div>
-                ) : (
-                  // Show actual photo
-                  <Image
-                    src={selectedPhoto.src}
-                    alt={selectedPhoto.alt}
-                    fill
-                    className="object-contain"
-                    sizes="(max-width: 768px) 100vw, 600px"
-                  />
-                )}
+              {/* Actual photo in modal */}
+              <div className="relative aspect-square rounded-xl overflow-hidden border-2 border-pink-200 mb-4">
+                <Image
+                  src={selectedPhoto.src}
+                  alt={selectedPhoto.alt}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 90vw, 50vw"
+                />
               </div>
               
               {/* Caption */}
@@ -177,14 +127,13 @@ export default function PhotoGallery() {
         </div>
       )}
 
-      {/* Instructions for adding real photos */}
-      <div className="mt-12 bg-blue-50 border border-blue-200 rounded-xl p-6">
-        <h3 className="text-lg font-semibold text-blue-800 mb-3">💡 Cara Menambahkan Foto Asli:</h3>
-        <div className="text-blue-700 space-y-2 text-sm">
-          <p>1. Simpan foto-foto Mama di folder <code className="bg-blue-100 px-2 py-1 rounded">public/photos/</code></p>
-          <p>2. Beri nama foto: <code className="bg-blue-100 px-2 py-1 rounded">mama-1.jpg</code>, <code className="bg-blue-100 px-2 py-1 rounded">mama-2.jpg</code>, dst.</p>
-          <p>3. Edit file <code className="bg-blue-100 px-2 py-1 rounded">PhotoGallery.tsx</code> dan ganti placeholder dengan nama file asli</p>
-          <p>4. Foto akan otomatis muncul di gallery! ✨</p>
+      {/* Gallery info */}
+      <div className="mt-12 bg-pink-50 border border-pink-200 rounded-xl p-6">
+        <h3 className="text-lg font-semibold text-pink-800 mb-3">� Gallery Kenangan Mama</h3>
+        <div className="text-pink-700 space-y-2 text-sm">
+          <p>✨ Klik foto untuk melihat dalam ukuran besar</p>
+          <p>💕 Setiap foto menyimpan kenangan indah bersama Mama tercinta</p>
+          <p>🤲 Meski jauh, kenangan ini selalu menghangatkan hati anak</p>
         </div>
       </div>
     </div>
