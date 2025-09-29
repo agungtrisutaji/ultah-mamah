@@ -1,0 +1,10 @@
+{
+  "builds": [
+    {
+      "src": "next.config.ts",
+      "use": "@vercel/next"
+    }
+  ],
+  "regions": ["sin1"],
+  "framework": "nextjs"
+}
