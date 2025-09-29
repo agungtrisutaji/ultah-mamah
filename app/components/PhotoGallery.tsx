@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import Image from 'next/image';
 
 interface Photo {
   id: number;
@@ -32,6 +31,51 @@ const mamaPhotos: Photo[] = [
   },
 ];
 
+// Custom Image component with fallback
+function CustomImage({ src, alt, className, onClick }: { 
+  src: string; 
+  alt: string; 
+  className?: string; 
+  onClick?: () => void; 
+}) {
+  const [loaded, setLoaded] = useState(false);
+  const [error, setError] = useState(false);
+
+  return (
+    <div className="relative w-full h-full">
+      {!loaded && !error && (
+        <div className="absolute inset-0 bg-gradient-to-br from-pink-100 to-purple-100 animate-pulse flex items-center justify-center">
+          <div className="text-pink-400 text-4xl">📷</div>
+          <div className="text-sm text-gray-500 mt-2">Loading...</div>
+        </div>
+      )}
+      
+      {error && (
+        <div className="absolute inset-0 bg-gradient-to-br from-red-100 to-orange-100 flex flex-col items-center justify-center">
+          <div className="text-red-400 text-4xl">❌</div>
+          <div className="text-sm text-gray-500 mt-2">Failed to load</div>
+          <div className="text-xs text-gray-400 mt-1">{src}</div>
+        </div>
+      )}
+      
+      <img
+        src={src}
+        alt={alt}
+        className={`${className} ${loaded ? 'opacity-100' : 'opacity-0'} transition-opacity duration-300`}
+        onLoad={() => {
+          console.log('✅ Image loaded successfully:', src);
+          setLoaded(true);
+        }}
+        onError={(e) => {
+          console.error('❌ Image failed to load:', src, e);
+          setError(true);
+        }}
+        onClick={onClick}
+      />
+    </div>
+  );
+}
+
 export default function PhotoGallery() {
   const [selectedPhoto, setSelectedPhoto] = useState<Photo | null>(null);
 
@@ -53,14 +97,12 @@ export default function PhotoGallery() {
         {mamaPhotos.map((photo) => (
           <div key={photo.id} className="group cursor-pointer" onClick={() => openModal(photo)}>
             <div className="relative overflow-hidden rounded-xl shadow-lg aspect-square border-2 border-pink-200 hover:border-pink-300 transition-all duration-300 group-hover:scale-105">
-              {/* Real photo */}
-              <Image
+              {/* Custom image with proper loading and error handling */}
+              <CustomImage
                 src={photo.src}
                 alt={photo.alt}
-                width={400}
-                height={400}
-                className="w-full h-full object-cover"
-                priority={photo.id <= 2}
+                className="w-full h-full object-cover cursor-pointer"
+                onClick={() => openModal(photo)}
               />
               
               {/* Overlay on hover */}
@@ -104,13 +146,11 @@ export default function PhotoGallery() {
               </div>
               
               {/* Real photo */}
-              <div className="relative aspect-square rounded-xl overflow-hidden border-2 border-pink-200 mb-4">
-                <Image
+              <div className="relative aspect-square rounded-xl overflow-hidden border-2 border-pink-200 mb-4 max-w-md mx-auto">
+                <CustomImage
                   src={selectedPhoto.src}
                   alt={selectedPhoto.alt}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 768px) 90vw, (max-width: 1200px) 70vw, 50vw"
+                  className="w-full h-full object-contain"
                 />
               </div>
               
