@@ -45,23 +45,27 @@ export default function Home() {
         <div className='max-w-3xl mx-auto text-center bg-white/70 backdrop-blur-sm rounded-2xl p-8 shadow-xl mb-12 border border-pink-200'>
           <div className='text-5xl mb-6'>🌟</div>
           <h2 className='text-2xl md:text-3xl font-semibold text-gray-800 mb-6'>
-            Maaf anak Mama tidak bisa pulang untuk merayakan hari istimewa ini...
+            Maaf anak Mama tidak bisa pulang untuk merayakan hari istimewa
+            ini...
           </h2>
           <div className='text-gray-700 leading-relaxed space-y-4'>
             <p className='text-lg'>
-              Meskipun jarak memisahkan kita, cinta dan rasa terima kasih anak Mama tidak pernah pudar. 
-              Pekerjaan mungkin membuat anak jarang pulang, tapi Mama selalu ada di hati dan pikiran anak setiap hari.
+              Meskipun jarak memisahkan, cinta dan rasa terima kasih anak Mama
+              tidak pernah pudar. Pekerjaan mungkin membuat anak jarang pulang,
+              tapi Mama selalu ada di hati dan pikiran anak setiap hari.
             </p>
             <p className='text-lg'>
-              Pengorbanan Mama membesarkan anak, kesabaran Mama menghadapi tingkah anak, 
-              dan doa-doa Mama yang tak pernah putus adalah kekuatan terbesar dalam hidup anak.
+              Pengorbanan Mama membesarkan anak, kesabaran Mama menghadapi
+              tingkah anak, dan doa-doa Mama yang tak pernah putus adalah
+              kekuatan terbesar dalam hidup anak.
             </p>
             <p className='text-lg'>
-              Di hari istimewa ini, anak berdoa semoga Allah selalu melindungi Mama, 
-              memberikan kesehatan, kebahagiaan, dan umur yang panjang.
+              Di hari istimewa ini, anak berdoa semoga Allah selalu melindungi
+              Mama, memberikan kesehatan, kebahagiaan, dan umur yang panjang.
             </p>
             <p className='text-xl font-semibold text-pink-600'>
-              Maafkan anak yang tidak bisa hadir... Tapi cinta anak untuk Mama tak terbatas! 💕✨
+              Maafkan anak yang tidak bisa hadir... Tapi cinta anak untuk Mama
+              tak terbatas! 💕✨
             </p>
           </div>
         </div>
@@ -70,7 +74,9 @@ export default function Home() {
         <div className='grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-12'>
           <div className='text-center bg-white/60 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-pink-100'>
             <div className='text-3xl mb-2'>🎈</div>
-            <div className='text-2xl font-bold text-purple-600'>Tahun Ke-</div>
+            <div className='text-2xl font-bold text-purple-600'>
+              Tahun Ke-58
+            </div>
             <div className='text-lg text-gray-600'>Semoga Panjang Umur</div>
           </div>
 
@@ -82,7 +88,9 @@ export default function Home() {
 
           <div className='text-center bg-white/60 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-rose-100'>
             <div className='text-3xl mb-2'>🤲</div>
-            <div className='text-2xl font-bold text-pink-600'>Doa Setiap Hari</div>
+            <div className='text-2xl font-bold text-pink-600'>
+              Doa Setiap Hari
+            </div>
             <div className='text-lg text-gray-600'>Untuk Kebaikan Mama</div>
           </div>
         </div>
@@ -111,7 +119,8 @@ export default function Home() {
             Made with ❤️ by your child who misses you every day
           </p>
           <p className='text-gray-500 text-sm mt-2'>
-            Meskipun jauh, cinta untuk Mama tak pernah berkurang • September 2025
+            Meskipun jauh, cinta untuk Mama tak pernah berkurang • September
+            2025
           </p>
         </div>
       </div>

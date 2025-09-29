@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 
 export default function VirtualCake() {
   const [candlesLit, setCandlesLit] = useState([true, true, true, true, true]);
@@ -64,10 +65,18 @@ export default function VirtualCake() {
 
       <div className='relative inline-block mb-8'>
         {/* Cake base */}
-        <div className='text-8xl md:text-9xl mb-4'>🎂</div>
+        <div className='flex justify-center mb-4'>
+          <Image
+            src='/cake.svg'
+            alt='Birthday Cake'
+            width={200}
+            height={200}
+            className='w-32 h-32 md:w-48 md:h-48'
+          />
+        </div>
 
         {/* Candles */}
-        <div className='absolute top-2 md:top-4 left-1/2 transform -translate-x-1/2 flex gap-1 md:gap-2'>
+        <div className='absolute top-8 md:top-12 left-1/2 transform -translate-x-1/2 flex gap-1 md:gap-2'>
           {candlesLit.map((isLit, index) => (
             <button
               key={index}
