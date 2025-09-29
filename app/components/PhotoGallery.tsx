@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 
 interface Photo {
   id: number;
@@ -9,44 +10,44 @@ interface Photo {
   caption: string;
 }
 
-// Placeholder photos - user can replace with real photos later
-const placeholderPhotos: Photo[] = [
+// Photos array - real photos will be displayed when available
+const photos: Photo[] = [
   {
     id: 1,
-    src: '/photos/placeholder-1.jpg',
+    src: '/photos/mom-me.png',
     alt: 'Foto kenangan dengan Mama',
-    caption: 'Momen indah bersama Mama tersayang 💕'
+    caption: 'Momen indah bersama Mama tersayang 💕',
   },
   {
     id: 2,
-    src: '/photos/placeholder-2.jpg',
+    src: '/photos/mom.png',
     alt: 'Mama saat tersenyum',
-    caption: 'Senyum Mama yang selalu menghangatkan hati ☺️'
+    caption: 'Senyum Mama yang selalu menghangatkan hati ☺️',
   },
   {
     id: 3,
-    src: '/photos/placeholder-3.jpg',
-    alt: 'Keluarga berkumpul',
-    caption: 'Kebersamaan keluarga yang tak ternilai 👨‍👩‍👧‍👦'
+    src: '/photos/best-mom.png',
+    alt: 'Mama terbaik di dunia',
+    caption: 'Mama terbaik yang pernah ada! �',
   },
   {
     id: 4,
     src: '/photos/placeholder-4.jpg',
-    alt: 'Mama saat memasak',
-    caption: 'Mama chef terbaik di dunia! 👩‍🍳'
+    alt: 'Foto keluarga',
+    caption: 'Kebersamaan keluarga yang tak ternilai 👨‍👩‍👧‍👦',
   },
   {
     id: 5,
     src: '/photos/placeholder-5.jpg',
     alt: 'Ulang tahun sebelumnya',
-    caption: 'Ulang tahun tahun lalu yang tak terlupakan 🎂'
+    caption: 'Ulang tahun tahun lalu yang tak terlupakan 🎂',
   },
   {
     id: 6,
     src: '/photos/placeholder-6.jpg',
     alt: 'Mama dan anak-anak',
-    caption: 'Mama dan anak-anaknya yang bahagia 🥰'
-  }
+    caption: 'Mama dan anak-anaknya yang bahagia 🥰',
+  },
 ];
 
 export default function PhotoGallery() {
@@ -67,19 +68,33 @@ export default function PhotoGallery() {
       </h2>
       
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {placeholderPhotos.map((photo) => (
+        {photos.map((photo) => (
           <div key={photo.id} className="group cursor-pointer" onClick={() => openModal(photo)}>
-            <div className="relative overflow-hidden rounded-xl shadow-lg bg-gradient-to-br from-pink-100 to-purple-100 aspect-square flex items-center justify-center border-2 border-pink-200 hover:border-pink-300 transition-all duration-300 group-hover:scale-105">
-              {/* Placeholder for actual photos */}
-              <div className="text-center p-6">
-                <div className="text-4xl mb-3">📷</div>
-                <p className="text-gray-600 text-sm font-medium">
-                  Foto {photo.id}
-                </p>
-                <p className="text-gray-500 text-xs mt-1">
-                  Klik untuk melihat
-                </p>
-              </div>
+            <div className="relative overflow-hidden rounded-xl shadow-lg bg-gradient-to-br from-pink-100 to-purple-100 aspect-square border-2 border-pink-200 hover:border-pink-300 transition-all duration-300 group-hover:scale-105">
+              {/* Check if photo exists */}
+              {photo.src.includes('placeholder') ? (
+                // Show placeholder for missing photos
+                <div className="flex items-center justify-center h-full">
+                  <div className="text-center p-6">
+                    <div className="text-4xl mb-3">📷</div>
+                    <p className="text-gray-600 text-sm font-medium">
+                      Foto {photo.id}
+                    </p>
+                    <p className="text-gray-500 text-xs mt-1">
+                      Belum ada foto
+                    </p>
+                  </div>
+                </div>
+              ) : (
+                // Show actual photo
+                <Image
+                  src={photo.src}
+                  alt={photo.alt}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                />
+              )}
               
               {/* Overlay on hover */}
               <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300 flex items-center justify-center">
@@ -121,17 +136,31 @@ export default function PhotoGallery() {
                 </button>
               </div>
               
-              {/* Photo placeholder */}
-              <div className="bg-gradient-to-br from-pink-100 to-purple-100 aspect-square rounded-xl flex items-center justify-center border-2 border-pink-200 mb-4">
-                <div className="text-center">
-                  <div className="text-6xl mb-4">📷</div>
-                  <p className="text-gray-600 font-medium">
-                    Foto {selectedPhoto.id}
-                  </p>
-                  <p className="text-gray-500 text-sm mt-2 max-w-xs">
-                    Ganti dengan foto asli Mama dengan menyimpan file di folder public/photos/
-                  </p>
-                </div>
+              {/* Photo display */}
+              <div className="relative bg-gradient-to-br from-pink-100 to-purple-100 aspect-square rounded-xl border-2 border-pink-200 mb-4 overflow-hidden">
+                {selectedPhoto.src.includes('placeholder') ? (
+                  // Show placeholder for missing photos
+                  <div className="flex items-center justify-center h-full">
+                    <div className="text-center">
+                      <div className="text-6xl mb-4">📷</div>
+                      <p className="text-gray-600 font-medium">
+                        Foto {selectedPhoto.id}
+                      </p>
+                      <p className="text-gray-500 text-sm mt-2 max-w-xs">
+                        Belum ada foto untuk slot ini
+                      </p>
+                    </div>
+                  </div>
+                ) : (
+                  // Show actual photo
+                  <Image
+                    src={selectedPhoto.src}
+                    alt={selectedPhoto.alt}
+                    fill
+                    className="object-contain"
+                    sizes="(max-width: 768px) 100vw, 600px"
+                  />
+                )}
               </div>
               
               {/* Caption */}

@@ -51,20 +51,20 @@ export default function Home() {
           <div className='text-gray-700 leading-relaxed space-y-4'>
             <p className='text-lg'>
               Meskipun jarak memisahkan, cinta dan rasa terima kasih anak Mama
-              tidak pernah pudar. Pekerjaan mungkin membuat anak jarang pulang,
-              tapi Mama selalu ada di hati dan pikiran anak setiap hari.
+              tidak pernah pudar. Pekerjaan mungkin membuat Agung jarang pulang,
+              tapi Mama selalu ada di hati dan pikiran Agung setiap hari.
             </p>
             <p className='text-lg'>
-              Pengorbanan Mama membesarkan anak, kesabaran Mama menghadapi
-              tingkah anak, dan doa-doa Mama yang tak pernah putus adalah
-              kekuatan terbesar dalam hidup anak.
+              Pengorbanan Mama membesarkan Agung, kesabaran Mama menghadapi
+              tingkah Agung, dan doa-doa Mama yang tak pernah putus adalah
+              kekuatan terbesar dalam hidup Agung.
             </p>
             <p className='text-lg'>
-              Di hari istimewa ini, anak berdoa semoga Allah selalu melindungi
+              Di hari istimewa ini, Agung berdoa semoga Allah selalu melindungi
               Mama, memberikan kesehatan, kebahagiaan, dan umur yang panjang.
             </p>
             <p className='text-xl font-semibold text-pink-600'>
-              Maafkan anak yang tidak bisa hadir... Tapi cinta anak untuk Mama
+              Maafkan Agung yang tidak bisa hadir... Tapi cinta Agung untuk Mama
               tak terbatas! 💕✨
             </p>
           </div>
@@ -98,9 +98,9 @@ export default function Home() {
         {/* Interactive Components Section */}
         <div className='space-y-12'>
           {/* Countdown Timer */}
-          <section id='countdown'>
+          {/* <section id='countdown'>
             <CountdownTimer />
-          </section>
+          </section> */}
 
           {/* Virtual Cake */}
           <section id='cake'>

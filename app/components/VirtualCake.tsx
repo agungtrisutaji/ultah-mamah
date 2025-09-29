@@ -53,14 +53,14 @@ export default function VirtualCake() {
               Aamiin Ya Rabbal Alamiin! ✨
             </h3>
             <p className='text-lg text-orange-700'>
-              Semoga doa anak untuk Mama dikabulkan Allah SWT! 🙏
+              Semoga doa Agung untuk Mama dikabulkan Allah SWT! 🙏
             </p>
           </div>
         </div>
       )}
 
       <h2 className='text-3xl md:text-4xl font-bold mb-6 text-transparent bg-gradient-to-r from-pink-600 to-orange-600 bg-clip-text'>
-        🎂 Kue Ulang Tahun Virtual dari Anak yang Jauh
+        🎂 Kue Ulang Tahun Virtual dari Agung yang Jauh
       </h2>
 
       <div className='relative inline-block mb-8'>
@@ -98,8 +98,8 @@ export default function VirtualCake() {
       <div className='space-y-4'>
         <p className='text-lg text-gray-700 mb-6'>
           {candlesLit.every((candle) => !candle)
-            ? 'Semua lilin sudah padam! Anak ikut mendoakan dari jauh agar semua permintaan Mama dikabulkan 💫'
-            : 'Meskipun anak tidak bisa meniup lilin bersama Mama, semoga kue virtual ini bisa sedikit menghibur... Klik lilin untuk meniupnya!'}
+            ? 'Semua lilin sudah padam! Agung ikut mendoakan dari jauh agar semua permintaan Mama dikabulkan 💫'
+            : 'Meskipun Agung tidak bisa meniup lilin bersama Mama, semoga kue virtual ini bisa sedikit menghibur... Klik lilin untuk meniupnya!'}
         </p>
 
         <div className='flex flex-col sm:flex-row gap-4 justify-center'>
@@ -121,14 +121,14 @@ export default function VirtualCake() {
       {/* Birthday wishes */}
       <div className='mt-8 p-4 bg-pink-50 rounded-xl border border-pink-200'>
         <h3 className='text-lg font-semibold text-pink-800 mb-3'>
-          💝 Doa Anak untuk Mama dari Kejauhan
+          💝 Doa Agung untuk Mama dari Kejauhan
         </h3>
         <div className='text-sm text-pink-700 space-y-2'>
           <p>• Ya Allah, berikan kesehatan dan kekuatan untuk Mama</p>
           <p>• Semoga Mama selalu dalam lindungan dan rahmat-Mu</p>
-          <p>• Bahagiakan Mama meski anak tidak bisa selalu di sisi</p>
+          <p>• Bahagiakan Mama meski Agung tidak bisa selalu di sisi</p>
           <p>• Panjangkan umur Mama dengan keberkahan</p>
-          <p>• Maafkan anak yang tidak bisa hadir di hari istimewa ini</p>
+          <p>• Maafkan Agung yang tidak bisa hadir di hari istimewa ini</p>
         </div>
       </div>
     </div>
