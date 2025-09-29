@@ -45,20 +45,23 @@ export default function Home() {
         <div className='max-w-3xl mx-auto text-center bg-white/70 backdrop-blur-sm rounded-2xl p-8 shadow-xl mb-12 border border-pink-200'>
           <div className='text-5xl mb-6'>🌟</div>
           <h2 className='text-2xl md:text-3xl font-semibold text-gray-800 mb-6'>
-            Terima kasih sudah menjadi Mama terbaik di dunia!
+            Maaf anak Mama tidak bisa pulang untuk merayakan hari istimewa ini...
           </h2>
           <div className='text-gray-700 leading-relaxed space-y-4'>
             <p className='text-lg'>
-              Setiap hari bersamamu adalah berkah yang tak terhingga. Kasih
-              sayangmu yang tulus, kesabaranmu yang luar biasa, dan senyummu
-              yang selalu menghangatkan hati.
+              Meskipun jarak memisahkan kita, cinta dan rasa terima kasih anak Mama tidak pernah pudar. 
+              Pekerjaan mungkin membuat anak jarang pulang, tapi Mama selalu ada di hati dan pikiran anak setiap hari.
             </p>
             <p className='text-lg'>
-              Di hari istimewa ini, kami berdoa semoga Mama selalu diberi
-              kesehatan, kebahagiaan, dan umur yang panjang.
+              Pengorbanan Mama membesarkan anak, kesabaran Mama menghadapi tingkah anak, 
+              dan doa-doa Mama yang tak pernah putus adalah kekuatan terbesar dalam hidup anak.
+            </p>
+            <p className='text-lg'>
+              Di hari istimewa ini, anak berdoa semoga Allah selalu melindungi Mama, 
+              memberikan kesehatan, kebahagiaan, dan umur yang panjang.
             </p>
             <p className='text-xl font-semibold text-pink-600'>
-              Love you so much, Ma! 💕✨
+              Maafkan anak yang tidak bisa hadir... Tapi cinta anak untuk Mama tak terbatas! 💕✨
             </p>
           </div>
         </div>
@@ -72,15 +75,15 @@ export default function Home() {
           </div>
 
           <div className='text-center bg-white/60 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-purple-100'>
-            <div className='text-3xl mb-2'>👨‍👩‍👧‍👦</div>
-            <div className='text-2xl font-bold text-rose-600'>Keluarga</div>
-            <div className='text-lg text-gray-600'>Yang Selalu Sayang</div>
+            <div className='text-3xl mb-2'>✈️</div>
+            <div className='text-2xl font-bold text-rose-600'>Jarak Jauh</div>
+            <div className='text-lg text-gray-600'>Tapi Hati Selalu Dekat</div>
           </div>
 
           <div className='text-center bg-white/60 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-rose-100'>
-            <div className='text-3xl mb-2'>🙏</div>
-            <div className='text-2xl font-bold text-pink-600'>Doa Terbaik</div>
-            <div className='text-lg text-gray-600'>Untuk Mama</div>
+            <div className='text-3xl mb-2'>🤲</div>
+            <div className='text-2xl font-bold text-pink-600'>Doa Setiap Hari</div>
+            <div className='text-lg text-gray-600'>Untuk Kebaikan Mama</div>
           </div>
         </div>
 
@@ -105,10 +108,10 @@ export default function Home() {
         {/* Footer */}
         <div className='text-center mt-16 pt-8 border-t border-pink-200'>
           <p className='text-gray-600 text-lg'>
-            Made with ❤️ by your loving children
+            Made with ❤️ by your child who misses you every day
           </p>
           <p className='text-gray-500 text-sm mt-2'>
-            Special birthday website • September 2025
+            Meskipun jauh, cinta untuk Mama tak pernah berkurang • September 2025
           </p>
         </div>
       </div>

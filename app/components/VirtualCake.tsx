@@ -42,32 +42,32 @@ export default function VirtualCake() {
   };
 
   return (
-    <div className="max-w-2xl mx-auto text-center bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-pink-200 relative">
+    <div className='max-w-2xl mx-auto text-center bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-pink-200 relative'>
       {/* Celebration overlay */}
       {showCelebration && (
-        <div className="absolute inset-0 bg-gradient-to-br from-yellow-200/90 to-orange-200/90 rounded-2xl flex items-center justify-center z-10">
-          <div className="text-center">
-            <div className="text-6xl mb-4 animate-bounce">🎉</div>
-            <h3 className="text-2xl md:text-3xl font-bold text-orange-800 mb-2">
-              Selamat! Permintaan Terkabul! ✨
+        <div className='absolute inset-0 bg-gradient-to-br from-yellow-200/90 to-orange-200/90 rounded-2xl flex items-center justify-center z-10'>
+          <div className='text-center'>
+            <div className='text-6xl mb-4 animate-bounce'>🎉</div>
+            <h3 className='text-2xl md:text-3xl font-bold text-orange-800 mb-2'>
+              Aamiin Ya Rabbal Alamiin! ✨
             </h3>
-            <p className="text-lg text-orange-700">
-              Semoga semua doa untuk Mama dikabulkan! 🙏
+            <p className='text-lg text-orange-700'>
+              Semoga doa anak untuk Mama dikabulkan Allah SWT! 🙏
             </p>
           </div>
         </div>
       )}
 
-      <h2 className="text-3xl md:text-4xl font-bold mb-6 text-transparent bg-gradient-to-r from-pink-600 to-orange-600 bg-clip-text">
-        🎂 Kue Ulang Tahun Virtual untuk Mama
+      <h2 className='text-3xl md:text-4xl font-bold mb-6 text-transparent bg-gradient-to-r from-pink-600 to-orange-600 bg-clip-text'>
+        🎂 Kue Ulang Tahun Virtual dari Anak yang Jauh
       </h2>
 
-      <div className="relative inline-block mb-8">
+      <div className='relative inline-block mb-8'>
         {/* Cake base */}
-        <div className="text-8xl md:text-9xl mb-4">🎂</div>
-        
+        <div className='text-8xl md:text-9xl mb-4'>🎂</div>
+
         {/* Candles */}
-        <div className="absolute top-2 md:top-4 left-1/2 transform -translate-x-1/2 flex gap-1 md:gap-2">
+        <div className='absolute top-2 md:top-4 left-1/2 transform -translate-x-1/2 flex gap-1 md:gap-2'>
           {candlesLit.map((isLit, index) => (
             <button
               key={index}
@@ -75,48 +75,51 @@ export default function VirtualCake() {
               className={`text-2xl md:text-3xl hover:scale-110 transition-all duration-300 ${
                 isLit ? 'animate-pulse' : ''
               }`}
-              title={isLit ? `Tiup lilin ${index + 1}` : `Lilin ${index + 1} sudah padam`}
-            >
+              title={
+                isLit
+                  ? `Tiup lilin ${index + 1}`
+                  : `Lilin ${index + 1} sudah padam`
+              }>
               {isLit ? '🕯️' : '💨'}
             </button>
           ))}
         </div>
       </div>
 
-      <div className="space-y-4">
-        <p className="text-lg text-gray-700 mb-6">
-          {candlesLit.every(candle => !candle) 
-            ? "Semua lilin sudah padam! Pasti Mama sudah membuat permintaan yang indah 💫"
-            : "Klik lilin untuk meniupnya, atau tiup semua sekaligus!"
-          }
+      <div className='space-y-4'>
+        <p className='text-lg text-gray-700 mb-6'>
+          {candlesLit.every((candle) => !candle)
+            ? 'Semua lilin sudah padam! Anak ikut mendoakan dari jauh agar semua permintaan Mama dikabulkan 💫'
+            : 'Meskipun anak tidak bisa meniup lilin bersama Mama, semoga kue virtual ini bisa sedikit menghibur... Klik lilin untuk meniupnya!'}
         </p>
 
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+        <div className='flex flex-col sm:flex-row gap-4 justify-center'>
           <button
             onClick={blowAllCandles}
-            disabled={candlesLit.every(candle => !candle)}
-            className="px-6 py-3 bg-gradient-to-r from-blue-400 to-blue-500 hover:from-blue-500 hover:to-blue-600 text-white font-semibold rounded-xl shadow-lg transform hover:scale-105 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
-          >
+            disabled={candlesLit.every((candle) => !candle)}
+            className='px-6 py-3 bg-gradient-to-r from-blue-400 to-blue-500 hover:from-blue-500 hover:to-blue-600 text-white font-semibold rounded-xl shadow-lg transform hover:scale-105 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100'>
             💨 Tiup Semua Lilin
           </button>
-          
+
           <button
             onClick={lightAllCandles}
-            className="px-6 py-3 bg-gradient-to-r from-orange-400 to-red-400 hover:from-orange-500 hover:to-red-500 text-white font-semibold rounded-xl shadow-lg transform hover:scale-105 transition-all duration-300"
-          >
+            className='px-6 py-3 bg-gradient-to-r from-orange-400 to-red-400 hover:from-orange-500 hover:to-red-500 text-white font-semibold rounded-xl shadow-lg transform hover:scale-105 transition-all duration-300'>
             🔥 Nyalakan Semua Lilin
           </button>
         </div>
       </div>
 
       {/* Birthday wishes */}
-      <div className="mt-8 p-4 bg-pink-50 rounded-xl border border-pink-200">
-        <h3 className="text-lg font-semibold text-pink-800 mb-3">💝 Permintaan Ulang Tahun</h3>
-        <div className="text-sm text-pink-700 space-y-2">
-          <p>• Kesehatan yang selalu prima untuk Mama</p>
-          <p>• Kebahagiaan yang tak pernah surut</p>
-          <p>• Umur panjang dan berkah berlimpah</p>
-          <p>• Selalu dalam lindungan dan rahmat Tuhan</p>
+      <div className='mt-8 p-4 bg-pink-50 rounded-xl border border-pink-200'>
+        <h3 className='text-lg font-semibold text-pink-800 mb-3'>
+          💝 Doa Anak untuk Mama dari Kejauhan
+        </h3>
+        <div className='text-sm text-pink-700 space-y-2'>
+          <p>• Ya Allah, berikan kesehatan dan kekuatan untuk Mama</p>
+          <p>• Semoga Mama selalu dalam lindungan dan rahmat-Mu</p>
+          <p>• Bahagiakan Mama meski anak tidak bisa selalu di sisi</p>
+          <p>• Panjangkan umur Mama dengan keberkahan</p>
+          <p>• Maafkan anak yang tidak bisa hadir di hari istimewa ini</p>
         </div>
       </div>
     </div>
