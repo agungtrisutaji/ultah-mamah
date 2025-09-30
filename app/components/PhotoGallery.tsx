@@ -67,10 +67,12 @@ export default function PhotoGallery() {
   useEffect(() => {
     const loadPhotoFromServer = async () => {
       try {
+        console.log('🔄 Loading photo from server...');
         const response = await fetch('/api/photos');
         const result = await response.json();
+        console.log('📡 Server response:', result);
         
-        if (result.success && result.photo) {
+        if (result.success && result.photo && result.photo.url) {
           // Konversi data server ke format Photo interface
           const serverPhoto = {
             id: 999,
@@ -79,13 +81,15 @@ export default function PhotoGallery() {
             caption: 'Foto spesial hari ini 🎉',
             filename: result.photo.filename
           };
+          console.log('✅ Setting uploaded photo:', serverPhoto);
           setUploadedPhoto(serverPhoto);
         } else {
           // Tidak ada foto di server
+          console.log('ℹ️ No photo found on server');
           setUploadedPhoto(null);
         }
       } catch (error) {
-        console.error('Error loading photo from server:', error);
+        console.error('❌ Error loading photo from server:', error);
         setUploadedPhoto(null);
       }
     };
@@ -179,6 +183,7 @@ export default function PhotoGallery() {
         filename: result.filename, // Simpan filename untuk referensi
       };
 
+      console.log('✅ New photo uploaded successfully:', newPhoto);
       setUploadedPhoto(newPhoto);
       setError(null);
 
@@ -227,11 +232,14 @@ export default function PhotoGallery() {
             <div className='relative w-full max-w-lg aspect-square mb-4'>
               <ImageZoom>
                 <Image
+                  key={uploadedPhoto.src} // Force re-render when URL changes
                   src={uploadedPhoto.src}
                   alt={uploadedPhoto.alt}
                   width={600}
                   height={600}
                   className='w-full h-full object-cover rounded-xl shadow-lg border-2 border-yellow-300'
+                  onLoad={() => console.log('✅ Uploaded photo loaded:', uploadedPhoto.src)}
+                  onError={() => console.error('❌ Uploaded photo failed to load:', uploadedPhoto.src)}
                 />
               </ImageZoom>
               
