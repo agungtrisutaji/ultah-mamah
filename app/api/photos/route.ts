@@ -1,9 +1,9 @@
 import { NextResponse } from 'next/server';
-import { listSupabasePhotos } from '@/lib/supabase';
+import { listS3Photos } from '@/lib/s3';
 
 export async function GET() {
   try {
-    const photoDetails = await listSupabasePhotos();
+    const photoDetails = await listS3Photos();
 
     // Sort by upload time (newest first)  
     photoDetails.sort((a, b) => new Date(b.uploadedAt).getTime() - new Date(a.uploadedAt).getTime());

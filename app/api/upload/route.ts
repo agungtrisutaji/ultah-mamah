@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { uploadToSupabase } from '@/lib/supabase';
+import { uploadToS3 } from '@/lib/s3';
 
 export async function POST(request: NextRequest) {
   try {
@@ -27,8 +27,8 @@ export async function POST(request: NextRequest) {
     const extension = file.name.split('.').pop() || 'jpg';
     const filename = `mama-birthday-${timestamp}.${extension}`;
 
-    // Upload to Supabase
-    const result = await uploadToSupabase(buffer, filename, file.type);
+    // Upload to S3
+    const result = await uploadToS3(buffer, filename, file.type);
 
     return NextResponse.json({
       success: true,

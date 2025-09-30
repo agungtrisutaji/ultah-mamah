@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { deleteFromSupabase } from '@/lib/supabase';
+import { deleteFromS3 } from '@/lib/s3';
 
 export async function DELETE(request: NextRequest) {
   try {
@@ -10,7 +10,7 @@ export async function DELETE(request: NextRequest) {
     }
 
     try {
-      await deleteFromSupabase(filename);
+      await deleteFromS3(filename);
       return NextResponse.json({
         success: true,
         message: 'File berhasil dihapus!'
