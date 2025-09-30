@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { unlink } from 'fs/promises';
-import { join } from 'path';
+import { deleteFromSupabase } from '@/lib/supabase';
 
 export async function DELETE(request: NextRequest) {
   try {
@@ -10,17 +9,13 @@ export async function DELETE(request: NextRequest) {
       return NextResponse.json({ error: 'Filename required' }, { status: 400 });
     }
 
-    // Path ke file yang akan dihapus
-    const filepath = join(process.cwd(), 'public', 'uploads', 'today', filename);
-
     try {
-      await unlink(filepath);
+      await deleteFromSupabase(filename);
       return NextResponse.json({
         success: true,
         message: 'File berhasil dihapus!'
       });
     } catch (error) {
-      // File mungkin sudah tidak ada
       console.error('Delete file error:', error);
       return NextResponse.json({
         success: true,

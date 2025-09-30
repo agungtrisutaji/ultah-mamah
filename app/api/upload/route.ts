@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { writeFile, mkdir } from 'fs/promises';
-import { join } from 'path';
+import { uploadToSupabase } from '@/lib/supabase';
 
 export async function POST(request: NextRequest) {
   try {
@@ -28,25 +27,13 @@ export async function POST(request: NextRequest) {
     const extension = file.name.split('.').pop() || 'jpg';
     const filename = `mama-birthday-${timestamp}.${extension}`;
 
-    // Pastikan folder uploads/today exists
-    const uploadsDir = join(process.cwd(), 'public', 'uploads', 'today');
-    try {
-      await mkdir(uploadsDir, { recursive: true });
-    } catch {
-      // Folder might already exist, ignore error
-    }
-
-    // Save file
-    const filepath = join(uploadsDir, filename);
-    await writeFile(filepath, buffer);
-
-    // Return URL untuk akses file
-    const fileUrl = `/uploads/today/${filename}`;
+    // Upload to Supabase
+    const result = await uploadToSupabase(buffer, filename, file.type);
 
     return NextResponse.json({
       success: true,
-      filename,
-      url: fileUrl,
+      filename: result.fileName,
+      url: result.url,
       message: 'File berhasil di-upload!'
     });
 
