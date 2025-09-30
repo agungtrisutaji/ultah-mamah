@@ -9,16 +9,16 @@ export default function Home() {
     <main className='min-h-screen bg-gradient-to-br from-pink-100 via-purple-50 to-rose-100'>
       {/* Floating hearts animation */}
       <div className='absolute inset-0 overflow-hidden pointer-events-none'>
-        <div className='absolute top-10 left-10 text-pink-300 text-xl animate-bounce delay-300'>
+        <div className='fixed top-10 left-10 text-pink-300 text-xl animate-bounce delay-300'>
           💕
         </div>
-        <div className='absolute top-20 right-20 text-rose-300 text-2xl animate-bounce delay-700'>
+        <div className='fixed top-20 right-20 text-rose-300 text-2xl animate-bounce delay-700'>
           ❤️
         </div>
-        <div className='absolute bottom-32 left-20 text-purple-300 text-lg animate-bounce delay-1000'>
+        <div className='fixed bottom-32 left-20 text-purple-300 text-lg animate-bounce delay-1000'>
           💖
         </div>
-        <div className='absolute bottom-20 right-32 text-pink-400 text-xl animate-bounce delay-500'>
+        <div className='fixed bottom-20 right-32 text-pink-400 text-xl animate-bounce delay-500'>
           💝
         </div>
       </div>
