@@ -1,4 +1,4 @@
-# 🚀 Panduan Deployment Website Ulang Tahun Mama
+# 🚀 Panduan Deployment Website Ulang Tahun Mamah
 
 ## Opsi 1: Deploy ke Vercel (Tercepat & Gratis)
 
@@ -82,7 +82,7 @@
 Edit file `app/page.tsx` bagian:
 ```typescript
 <h2 className="text-2xl md:text-3xl font-semibold text-gray-800 mb-6">
-  Terima kasih sudah menjadi Mama terbaik di dunia!  // ← Edit disini
+  Terima kasih sudah menjadi Mamah terbaik di dunia!  // ← Edit disini
 </h2>
 ```
 

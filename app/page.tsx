@@ -30,7 +30,7 @@ export default function Home() {
           <h1 className='text-4xl md:text-6xl font-bold text-transparent bg-gradient-to-r from-pink-600 via-purple-600 to-rose-600 bg-clip-text mb-4 leading-tight'>
             Selamat Ulang Tahun
             <br />
-            <span className='text-5xl md:text-7xl'>Mama Tersayang! 🎂</span>
+            <span className='text-5xl md:text-7xl'>Mamah Tersayang! 🎂</span>
           </h1>
           <div className='text-lg md:text-xl text-gray-700 mb-4'>
             <div className='flex items-center justify-center gap-2 mb-2'>
@@ -45,26 +45,26 @@ export default function Home() {
         <div className='max-w-3xl mx-auto text-center bg-white/70 backdrop-blur-sm rounded-2xl p-8 shadow-xl mb-12 border border-pink-200'>
           <div className='text-5xl mb-6'>🌟</div>
           <h2 className='text-2xl md:text-3xl font-semibold text-gray-800 mb-6'>
-            Maaf anak Mama ga bisa pulang untuk merayakan hari istimewa ini...
+            Maaf anak Mamah ga bisa pulang untuk merayakan hari istimewa ini...
           </h2>
           <div className='text-gray-700 leading-relaxed space-y-4'>
             <p className='text-lg'>
-              Meskipun jarak memisahkan, cinta dan rasa terima kasih anak Mama
+              Meskipun jarak memisahkan, cinta dan rasa terima kasih anak Mamah
               tidak pernah pudar. Pekerjaan mungkin membuat Agung jarang pulang,
-              tapi Mama selalu ada di hati dan pikiran Agung setiap hari.
+              tapi Mamah selalu ada di hati dan pikiran Agung setiap hari.
             </p>
             <p className='text-lg'>
-              Pengorbanan Mama membesarkan Agung, kesabaran Mama menghadapi
-              tingkah Agung, dan doa-doa Mama yang tak pernah putus adalah
+              Pengorbanan Mamah membesarkan Agung, kesabaran Mamah menghadapi
+              tingkah Agung, dan doa-doa Mamah yang tak pernah putus adalah
               kekuatan terbesar dalam hidup Agung.
             </p>
             <p className='text-lg'>
               Di hari istimewa ini, Agung berdoa semoga Allah selalu melindungi
-              Mama, memberikan kesehatan, kebahagiaan, dan umur yang panjang.
+              Mamah, memberikan kesehatan, kebahagiaan, dan umur yang panjang.
             </p>
             <p className='text-xl font-semibold text-pink-600'>
-              Maafin Agung yang ga bisa hadir... Tapi cinta Agung untuk Mama tak
-              terbatas! 💕✨
+              Maafin Agung yang ga bisa hadir... Tapi cinta Agung untuk Mamah
+              tak terbatas! 💕✨
             </p>
           </div>
         </div>
@@ -90,7 +90,7 @@ export default function Home() {
             <div className='text-2xl font-bold text-pink-600'>
               Doa Setiap Hari
             </div>
-            <div className='text-lg text-gray-600'>Untuk Kebaikan Mama</div>
+            <div className='text-lg text-gray-600'>Untuk Kebaikan Mamah</div>
           </div>
         </div>
 
@@ -118,7 +118,7 @@ export default function Home() {
             Made with ❤️ by your child who missed you
           </p>
           <p className='text-gray-500 text-sm mt-2'>
-            Meskipun jauh, cinta untuk Mama tak pernah berkurang • September
+            Meskipun jauh, cinta untuk Mamah tak pernah berkurang • September
             2025
           </p>
         </div>

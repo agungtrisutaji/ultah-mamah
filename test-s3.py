@@ -81,7 +81,7 @@ def test_s3_delete(filename):
         print(f"❌ Delete error: {e}")
 
 def main():
-    print("🎂 Testing Mama Birthday Website S3 Integration")
+    print("🎂 Testing Mamah Birthday Website S3 Integration")
     print("=" * 60)
     
     # Test 1: Initial list

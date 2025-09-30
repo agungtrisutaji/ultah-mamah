@@ -1,4 +1,4 @@
-# 🎂 Website Ulang Tahun Mama Tersayang
+# 🎂 Website Ulang Tahun Mamah Tersayang
 
 Website ulang tahun interaktif yang dibuat dengan ❤️ untuk mama tercinta menggunakan Next.js 15.5.4 dan Tailwind CSS.
 

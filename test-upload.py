@@ -82,7 +82,7 @@ def test_photo_delete(filename):
         print(f"❌ Delete error: {e}")
 
 def main():
-    print("🎂 Testing Mama Birthday Website Supabase Integration")
+    print("🎂 Testing Mamah Birthday Website Supabase Integration")
     print("=" * 60)
     
     # Test 1: Photo list (should be empty initially)

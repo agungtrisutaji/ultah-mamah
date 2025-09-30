@@ -115,7 +115,7 @@ def test_invalid_file():
         return False
 
 def main():
-    print("🎂 Testing Mama Birthday Production S3 Integration")
+    print("🎂 Testing Mamah Birthday Production S3 Integration")
     print("=" * 65)
     print(f"Production URL: {PRODUCTION_URL}")
     print()

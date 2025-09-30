@@ -18,20 +18,20 @@ const mamaPhotos: Photo[] = [
   {
     id: 1,
     src: 'https://zfyjvwctyvefzdcietpk.supabase.co/storage/v1/object/public/mama-photos/gallery/mom.png',
-    alt: 'Mama tersenyum',
-    caption: 'Senyum Mama yang selalu menghangatkan hati ☺️',
+    alt: 'Mamah tersenyum',
+    caption: 'Senyum Mamah yang selalu menghangatkan hati ☺️',
   },
   {
     id: 2,
     src: 'https://zfyjvwctyvefzdcietpk.supabase.co/storage/v1/object/public/mama-photos/gallery/mom-me.png',
-    alt: 'Mama dan aku',
-    caption: 'Kenangan indah bersama Mama tercinta 💕',
+    alt: 'Mamah dan aku',
+    caption: 'Kenangan indah bersama Mamah tercinta 💕',
   },
   {
     id: 3,
     src: 'https://zfyjvwctyvefzdcietpk.supabase.co/storage/v1/object/public/mama-photos/gallery/best-mom.png',
-    alt: 'Mama terbaik di dunia',
-    caption: 'Mama terbaik di dunia! Terima kasih untuk segalanya 👑',
+    alt: 'Mamah terbaik di dunia',
+    caption: 'Mamah terbaik di dunia! Terima kasih untuk segalanya 👑',
   },
   {
     id: 4,
@@ -48,11 +48,10 @@ const mamaPhotos: Photo[] = [
   {
     id: 6,
     src: 'https://zfyjvwctyvefzdcietpk.supabase.co/storage/v1/object/public/mama-photos/gallery/mom-children.png',
-    alt: 'Mama dan anak-anak',
-    caption: 'Mama dan anak-anaknya yang bahagia 🥰',
+    alt: 'Mamah dan anak-anak',
+    caption: 'Mamah dan anak-anaknya yang bahagia 🥰',
   },
 ];
-
 
 export default function PhotoGallery() {
   const [uploadedPhoto, setUploadedPhoto] = useState<Photo | null>(null);
@@ -238,7 +237,7 @@ export default function PhotoGallery() {
   return (
     <div className='max-w-6xl mx-auto'>
       <h2 className='text-3xl md:text-4xl font-bold text-center mb-8 text-transparent bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text'>
-        📸 Gallery Kenangan Bersama Mama
+        📸 Gallery Kenangan Bersama Mamah
       </h2>
 
       {/* Foto Hari Ini - Section Terpisah dengan ukuran besar */}

@@ -65,7 +65,7 @@ export default function VirtualCake() {
               Aamiin Ya Rabbal Alamiin! ✨
             </h3>
             <p className='text-lg text-orange-700'>
-              Semoga doa Agung untuk Mama dikabulkan Allah SWT! 🙏
+              Semoga doa Agung untuk Mamah dikabulkan Allah SWT! 🙏
             </p>
             <p className='text-sm text-orange-600 mt-2 italic'>
               - Dengan cinta dari Agung 💝
@@ -113,8 +113,8 @@ export default function VirtualCake() {
       <div className='space-y-4'>
         <p className='text-lg text-gray-700 mb-6'>
           {candlesLit.every((candle) => !candle)
-            ? 'Semua lilin sudah padam! Agung ikut mendoakan dari jauh agar semua permintaan Mama dikabulkan 💫'
-            : 'Meskipun Agung ga bisa tiup lilin bareng Mama, semoga kue virtual ini bisa sedikit menghibur... Klik lilin untuk meniupnya!'}
+            ? 'Semua lilin sudah padam! Agung ikut mendoakan dari jauh agar semua permintaan Mamah dikabulkan 💫'
+            : 'Meskipun Agung ga bisa tiup lilin bareng Mamah, semoga kue virtual ini bisa sedikit menghibur... Klik lilin untuk meniupnya!'}
         </p>
 
         <div className='flex flex-col sm:flex-row gap-4 justify-center'>
@@ -136,13 +136,13 @@ export default function VirtualCake() {
       {/* Birthday wishes */}
       <div className='mt-8 p-4 bg-pink-50 rounded-xl border border-pink-200'>
         <h3 className='text-lg font-semibold text-pink-800 mb-3'>
-          💝 Doa Agung untuk Mama
+          💝 Doa Agung untuk Mamah
         </h3>
         <div className='text-sm text-pink-700 space-y-2'>
-          <p>• Ya Allah, berikan kesehatan dan kekuatan untuk Mama</p>
-          <p>• Semoga Mama selalu dalam lindungan dan rahmat-Mu</p>
-          <p>• Bahagiakan Mama meski Agung tidak bisa selalu di sisi</p>
-          <p>• Panjangkan umur Mama dengan keberkahan</p>
+          <p>• Ya Allah, berikan kesehatan dan kekuatan untuk Mamah</p>
+          <p>• Semoga Mamah selalu dalam lindungan dan rahmat-Mu</p>
+          <p>• Bahagiakan Mamah meski Agung tidak bisa selalu di sisi</p>
+          <p>• Panjangkan umur Mamah dengan keberkahan</p>
           <p>• Maafkan Agung yang tidak bisa hadir di hari istimewa ini</p>
         </div>
       </div>

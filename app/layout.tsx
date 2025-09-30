@@ -13,9 +13,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'Selamat Ulang Tahun Mama Tercinta 🎉',
+  title: 'Selamat Ulang Tahun Mamah Tercinta 🎉',
   description:
-    'Sebuah kejutan kecil dari anakmu yang jauh di mata, tapi dekat di hati. Semoga hari Mama penuh kebahagiaan dan cinta! ❤️',
+    'Sebuah kejutan kecil dari anakmu yang jauh di mata, tapi dekat di hati. Semoga hari Mamah penuh kebahagiaan dan cinta! ❤️',
 };
 
 export default function RootLayout({
