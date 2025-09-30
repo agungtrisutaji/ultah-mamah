@@ -52,7 +52,7 @@ export default function VirtualCake() {
             <div className='mb-6 flex justify-center'>
               <div className='relative w-48 h-48 md:w-60 md:h-60 rounded-full overflow-hidden border-4 border-yellow-400 shadow-2xl animate-pulse bg-white/20'>
                 <Image
-                  src='/photos/agung.png' // Foto Agung
+                  src='https://zfyjvwctyvefzdcietpk.supabase.co/storage/v1/object/public/mama-photos/gallery/agung.png'
                   alt='Agung'
                   width={320}
                   height={320}

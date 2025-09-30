@@ -13,41 +13,41 @@ interface Photo {
   filename?: string; // Optional untuk foto yang di-upload
 }
 
-// Real photos of mama
+// Real photos of mama - Now hosted on Supabase Storage
 const mamaPhotos: Photo[] = [
   {
     id: 1,
-    src: '/photos/mom.png',
+    src: 'https://zfyjvwctyvefzdcietpk.supabase.co/storage/v1/object/public/mama-photos/gallery/mom.png',
     alt: 'Mama tersenyum',
     caption: 'Senyum Mama yang selalu menghangatkan hati ☺️',
   },
   {
     id: 2,
-    src: '/photos/mom-me.png',
+    src: 'https://zfyjvwctyvefzdcietpk.supabase.co/storage/v1/object/public/mama-photos/gallery/mom-me.png',
     alt: 'Mama dan aku',
     caption: 'Kenangan indah bersama Mama tercinta 💕',
   },
   {
     id: 3,
-    src: '/photos/best-mom.png',
+    src: 'https://zfyjvwctyvefzdcietpk.supabase.co/storage/v1/object/public/mama-photos/gallery/best-mom.png',
     alt: 'Mama terbaik di dunia',
     caption: 'Mama terbaik di dunia! Terima kasih untuk segalanya 👑',
   },
   {
     id: 4,
-    src: '/photos/mom-fams.png',
+    src: 'https://zfyjvwctyvefzdcietpk.supabase.co/storage/v1/object/public/mama-photos/gallery/mom-fams.png',
     alt: 'Keluarga berkumpul',
     caption: 'Kebersamaan keluarga yang tak ternilai 👨‍👩‍👧‍👦',
   },
   {
     id: 5,
-    src: '/photos/mom-past-bday.jpg',
+    src: 'https://zfyjvwctyvefzdcietpk.supabase.co/storage/v1/object/public/mama-photos/gallery/mom-past-bday.jpg',
     alt: 'Ulang tahun sebelumnya',
     caption: 'Ulang tahun tahun lalu yang tak terlupakan 🎂',
   },
   {
     id: 6,
-    src: '/photos/mom-children.png',
+    src: 'https://zfyjvwctyvefzdcietpk.supabase.co/storage/v1/object/public/mama-photos/gallery/mom-children.png',
     alt: 'Mama dan anak-anak',
     caption: 'Mama dan anak-anaknya yang bahagia 🥰',
   },
