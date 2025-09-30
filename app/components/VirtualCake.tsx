@@ -48,12 +48,27 @@ export default function VirtualCake() {
       {showCelebration && (
         <div className='absolute inset-0 bg-gradient-to-br from-yellow-200/90 to-orange-200/90 rounded-2xl flex items-center justify-center z-10'>
           <div className='text-center'>
+            {/* Foto Agung di celebration */}
+            <div className='mb-4 flex justify-center'>
+              <div className='relative w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden border-4 border-yellow-400 shadow-lg animate-pulse'>
+                <Image
+                  src='/photos/mom-me.png' // Foto Agung dan Mama
+                  alt='Agung dan Mama'
+                  width={96}
+                  height={96}
+                  className='w-full h-full object-cover'
+                />
+              </div>
+            </div>
             <div className='text-6xl mb-4 animate-bounce'>🎉</div>
             <h3 className='text-2xl md:text-3xl font-bold text-orange-800 mb-2'>
               Aamiin Ya Rabbal Alamiin! ✨
             </h3>
             <p className='text-lg text-orange-700'>
               Semoga doa Agung untuk Mama dikabulkan Allah SWT! 🙏
+            </p>
+            <p className='text-sm text-orange-600 mt-2 italic'>
+              - Dengan cinta dari Agung 💝
             </p>
           </div>
         </div>
