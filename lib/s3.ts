@@ -31,8 +31,9 @@ export async function uploadToS3(
 
     await s3Client.send(command)
 
-    // Generate public URL
-    const publicUrl = `${process.env.SUPABASE_S3_ENDPOINT}/${BUCKET_NAME}/${key}`
+    // Generate public URL untuk Supabase storage
+    const supabaseProjectRef = process.env.SUPABASE_S3_ENDPOINT!.match(/https:\/\/([^.]+)\.storage\.supabase\.co/)?.[1]
+    const publicUrl = `https://${supabaseProjectRef}.supabase.co/storage/v1/object/public/${BUCKET_NAME}/${key}`
 
     return {
       path: key,
@@ -77,7 +78,8 @@ export async function listS3Photos() {
 
     return response.Contents?.map(object => {
       const fileName = object.Key?.split('/').pop() || ''
-      const publicUrl = `${process.env.SUPABASE_S3_ENDPOINT}/${BUCKET_NAME}/${object.Key}`
+      const supabaseProjectRef = process.env.SUPABASE_S3_ENDPOINT!.match(/https:\/\/([^.]+)\.storage\.supabase\.co/)?.[1]
+      const publicUrl = `https://${supabaseProjectRef}.supabase.co/storage/v1/object/public/${BUCKET_NAME}/${object.Key}`
 
       return {
         name: fileName,

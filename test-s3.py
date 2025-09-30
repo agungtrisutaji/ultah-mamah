@@ -15,7 +15,7 @@ def test_s3_upload():
     
     try:
         # Test upload
-        response = requests.post('http://localhost:3002/api/upload', files=files)
+        response = requests.post('http://localhost:3003/api/upload', files=files)
         
         print(f"Upload Status Code: {response.status_code}")
         print(f"Upload Response: {response.text}")
@@ -38,7 +38,7 @@ def test_s3_list():
     print("\n🧪 Testing S3 List API...")
     
     try:
-        response = requests.get('http://localhost:3002/api/photos')
+        response = requests.get('http://localhost:3003/api/photos')
         print(f"List Status Code: {response.status_code}")
         
         if response.status_code == 200:
@@ -64,7 +64,7 @@ def test_s3_delete(filename):
     print(f"\n🧪 Testing S3 Delete API for: {filename}")
     
     try:
-        response = requests.delete('http://localhost:3002/api/delete', 
+        response = requests.delete('http://localhost:3003/api/delete', 
                                   json={'filename': filename})
         
         print(f"Delete Status Code: {response.status_code}")
