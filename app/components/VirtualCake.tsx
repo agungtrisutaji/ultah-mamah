@@ -21,7 +21,7 @@ export default function VirtualCake() {
       // Hide celebration after 3 seconds
       setTimeout(() => {
         setShowCelebration(false);
-      }, 3000);
+      }, 5000);
     }
   };
 
@@ -50,12 +50,12 @@ export default function VirtualCake() {
           <div className='text-center'>
             {/* Foto Agung di celebration */}
             <div className='mb-6 flex justify-center'>
-              <div className='relative w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-yellow-400 shadow-2xl animate-pulse bg-white/20'>
+              <div className='relative w-48 h-48 md:w-60 md:h-60 rounded-full overflow-hidden border-4 border-yellow-400 shadow-2xl animate-pulse bg-white/20'>
                 <Image
                   src='/photos/agung.png' // Foto Agung
                   alt='Agung'
-                  width={160}
-                  height={160}
+                  width={320}
+                  height={320}
                   className='w-full h-full object-cover'
                 />
               </div>

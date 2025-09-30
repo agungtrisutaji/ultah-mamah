@@ -57,11 +57,15 @@ const mamaPhotos: Photo[] = [
 export default function PhotoGallery() {
   const [uploadedPhoto, setUploadedPhoto] = useState<Photo | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [showPasswordModal, setShowPasswordModal] = useState(false);
+  const [passwordInput, setPasswordInput] = useState('');
+  const [pendingAction, setPendingAction] = useState<
+    'upload' | 'delete' | null
+  >(null);
 
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   // Key untuk localStorage
-
 
   // Load foto dari server saat komponen mount
   useEffect(() => {
@@ -71,7 +75,7 @@ export default function PhotoGallery() {
         const response = await fetch('/api/photos');
         const result = await response.json();
         console.log('📡 Server response:', result);
-        
+
         if (result.success && result.photo && result.photo.url) {
           // Konversi data server ke format Photo interface
           const serverPhoto = {
@@ -79,7 +83,7 @@ export default function PhotoGallery() {
             src: result.photo.url,
             alt: 'Foto hari ini',
             caption: 'Foto spesial hari ini 🎉',
-            filename: result.photo.filename
+            filename: result.photo.filename,
           };
           console.log('✅ Setting uploaded photo:', serverPhoto);
           setUploadedPhoto(serverPhoto);
@@ -97,7 +101,46 @@ export default function PhotoGallery() {
     loadPhotoFromServer();
   }, []);
 
+  // Password verification
+  const CORRECT_PASSWORD = 'mama582025'; // Password untuk akses foto
 
+  const verifyPassword = () => {
+    if (passwordInput === CORRECT_PASSWORD) {
+      setShowPasswordModal(false);
+      setPasswordInput('');
+
+      // Execute pending action
+      if (pendingAction === 'upload' && fileInputRef.current) {
+        fileInputRef.current.click();
+      } else if (pendingAction === 'delete' && uploadedPhoto?.filename) {
+        executeDelete();
+      }
+
+      setPendingAction(null);
+    } else {
+      setError('Password salah! Coba lagi.');
+      setPasswordInput('');
+    }
+  };
+
+  const requestPassword = (action: 'upload' | 'delete') => {
+    setPendingAction(action);
+    setShowPasswordModal(true);
+    setError(null);
+  };
+
+  // Execute delete after password verification
+  const executeDelete = async () => {
+    if (!uploadedPhoto?.filename) return;
+
+    const deleteSuccess = await deletePhotoFromServer(uploadedPhoto.filename);
+    if (deleteSuccess) {
+      setUploadedPhoto(null);
+      if (fileInputRef.current) {
+        fileInputRef.current.value = '';
+      }
+    }
+  };
 
   // Fungsi hapus file dari server
   const deletePhotoFromServer = async (filename: string): Promise<boolean> => {
@@ -113,7 +156,7 @@ export default function PhotoGallery() {
 
       const result = await response.json();
       console.log('Delete API response:', result);
-      
+
       if (response.ok && result.success) {
         console.log('Photo deleted successfully:', filename);
         return true;
@@ -128,8 +171,6 @@ export default function PhotoGallery() {
       return false;
     }
   };
-
-
 
   // Handler upload ke server
   const handlePhotoUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -151,7 +192,9 @@ export default function PhotoGallery() {
     try {
       // Hapus foto lama jika ada (saat edit/ganti)
       if (uploadedPhoto && uploadedPhoto.filename) {
-        const deleteSuccess = await deletePhotoFromServer(uploadedPhoto.filename);
+        const deleteSuccess = await deletePhotoFromServer(
+          uploadedPhoto.filename
+        );
         if (!deleteSuccess) {
           setError('Gagal menghapus foto lama. Upload dibatalkan.');
           return;
@@ -186,7 +229,6 @@ export default function PhotoGallery() {
       console.log('✅ New photo uploaded successfully:', newPhoto);
       setUploadedPhoto(newPhoto);
       setError(null);
-
     } catch (error) {
       console.error('Upload error:', error);
       setError('Gagal upload file. Silakan coba lagi.');
@@ -204,19 +246,20 @@ export default function PhotoGallery() {
         <h3 className='text-2xl font-bold text-center mb-6 text-transparent bg-gradient-to-r from-yellow-600 to-orange-600 bg-clip-text'>
           🌟 Foto Spesial Hari Ini (30 September 2025)
         </h3>
-        
+
         {!uploadedPhoto ? (
           // Upload area
           <div className='flex flex-col items-center'>
-            <div 
+            <div
               className='w-full max-w-md aspect-square border-2 border-dashed border-yellow-300 rounded-xl flex flex-col items-center justify-center bg-white/70 hover:bg-yellow-50/70 transition-colors cursor-pointer mb-4'
-              onClick={() => fileInputRef.current?.click()}
-            >
+              onClick={() => requestPassword('upload')}>
               <div className='text-6xl mb-4'>📷</div>
-              <p className='text-lg font-semibold text-yellow-700 mb-2'>Upload foto celebration hari ini!</p>
+              <p className='text-lg font-semibold text-yellow-700 mb-2'>
+                Upload foto celebration hari ini!
+              </p>
               <p className='text-sm text-yellow-600'>Klik untuk pilih foto</p>
             </div>
-            
+
             <input
               type='file'
               accept='image/*'
@@ -238,78 +281,64 @@ export default function PhotoGallery() {
                   width={600}
                   height={600}
                   className='w-full h-full object-cover rounded-xl shadow-lg border-2 border-yellow-300'
-                  onLoad={() => console.log('✅ Uploaded photo loaded:', uploadedPhoto.src)}
-                  onError={() => console.error('❌ Uploaded photo failed to load:', uploadedPhoto.src)}
+                  onLoad={() =>
+                    console.log('✅ Uploaded photo loaded:', uploadedPhoto.src)
+                  }
+                  onError={() =>
+                    console.error(
+                      '❌ Uploaded photo failed to load:',
+                      uploadedPhoto.src
+                    )
+                  }
                 />
               </ImageZoom>
-              
+
               {/* Edit and Delete button overlays */}
               <div className='absolute top-4 right-4 flex gap-2'>
                 <button
                   onClick={() => {
                     setError(null);
-                    if (fileInputRef.current) {
-                      fileInputRef.current.click();
-                    }
+                    requestPassword('upload');
                   }}
-                  className='bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-2 rounded-full text-sm font-semibold shadow-lg transition-colors'
-                >
+                  className='bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-2 rounded-full text-sm font-semibold shadow-lg transition-colors'>
                   ✏️ Ganti
                 </button>
                 <button
-                  onClick={async () => {
-                    console.log('Delete button clicked');
-                    console.log('Current uploadedPhoto:', uploadedPhoto);
-                    if (confirm('Yakin ingin hapus foto hari ini? Foto akan hilang permanen dari server.')) {
-                      console.log('User confirmed deletion');
+                  onClick={() => {
+                    if (
+                      confirm(
+                        'Yakin ingin hapus foto hari ini? Foto akan hilang permanen dari server.'
+                      )
+                    ) {
                       setError(null);
-                      
-                      // Hapus file dari server
-                      if (uploadedPhoto && uploadedPhoto.filename) {
-                        console.log('Deleting photo with filename:', uploadedPhoto.filename);
-                        const deleteSuccess = await deletePhotoFromServer(uploadedPhoto.filename);
-                        
-                        if (deleteSuccess) {
-                          // Clear state hanya jika berhasil hapus dari server
-                          console.log('Photo deleted successfully, clearing state');
-                          setUploadedPhoto(null);
-                          if (fileInputRef.current) {
-                            fileInputRef.current.value = '';
-                          }
-                        } else {
-                          console.log('Failed to delete photo');
-                        }
-                      } else {
-                        // Tidak ada filename, langsung clear state
-                        console.log('No filename found, clearing state anyway');
-                        setUploadedPhoto(null);
-                        if (fileInputRef.current) {
-                          fileInputRef.current.value = '';
-                        }
-                      }
-                    } else {
-                      console.log('User cancelled deletion');
+                      requestPassword('delete');
                     }
                   }}
-                  className='bg-red-500 hover:bg-red-600 text-white px-3 py-2 rounded-full text-sm font-semibold shadow-lg transition-colors'
-                >
+                  className='bg-red-500 hover:bg-red-600 text-white px-3 py-2 rounded-full text-sm font-semibold shadow-lg transition-colors'>
                   🗑️ Hapus
                 </button>
               </div>
             </div>
-            
+
             <div className='text-center'>
-              <p className='text-xl font-bold text-yellow-700 mb-2'>{uploadedPhoto.caption}</p>
-              <p className='text-yellow-600 mb-2'>Foto indah dari celebration hari ini! 🎉</p>
-              <div className='space-y-1'>
-                <p className='text-green-600 text-sm'>✅ Foto tersimpan permanen di server</p>
-                <p className='text-blue-600 text-xs'>📁 Location: public/uploads/today/</p>
+              <p className='text-xl font-bold text-yellow-700 mb-2'>
+                {uploadedPhoto.caption}
+              </p>
+              <p className='text-yellow-600 mb-2'>
+                Foto indah dari celebration hari ini! 🎉
+              </p>
+              {/* <div className='space-y-1'>
+                <p className='text-green-600 text-sm'>
+                  ✅ Foto tersimpan permanen di server
+                </p>
                 {uploadedPhoto.filename && (
-                  <p className='text-gray-500 text-xs'>📄 File: {uploadedPhoto.filename}</p>
+                  <p className='text-gray-500 text-xs'>
+                    📄 File: {uploadedPhoto.filename}
+                  </p>
                 )}
-              </div>
+              </div> */}
             </div>
-            
+
             {/* Hidden input for re-upload */}
             <input
               type='file'
@@ -327,7 +356,7 @@ export default function PhotoGallery() {
         <h3 className='text-2xl font-bold text-center mb-6 text-transparent bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text'>
           💕 Gallery Kenangan Indah
         </h3>
-        
+
         <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6'>
           {mamaPhotos.map((photo) => (
             <div key={photo.id} className='group'>
@@ -368,6 +397,56 @@ export default function PhotoGallery() {
           ))}
         </div>
       </div>
+
+      {/* Password Modal */}
+      {showPasswordModal && (
+        <div className='fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50'>
+          <div className='bg-white rounded-2xl p-8 shadow-2xl border border-gray-200 max-w-md w-full mx-4'>
+            <h3 className='text-2xl font-bold text-center mb-6 text-gray-800'>
+              🔐 Masukkan Password
+            </h3>
+            <p className='text-center text-gray-600 mb-6'>
+              Password diperlukan untuk{' '}
+              {pendingAction === 'upload' ? 'upload/edit' : 'hapus'} foto hari
+              ini
+            </p>
+
+            <div className='space-y-4'>
+              <input
+                type='password'
+                placeholder='Masukkan password...'
+                value={passwordInput}
+                onChange={(e) => setPasswordInput(e.target.value)}
+                onKeyPress={(e) => e.key === 'Enter' && verifyPassword()}
+                className='w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent'
+                autoFocus
+              />
+
+              {error && (
+                <p className='text-red-500 text-sm text-center'>{error}</p>
+              )}
+
+              <div className='flex gap-3 pt-4'>
+                <button
+                  onClick={() => {
+                    setShowPasswordModal(false);
+                    setPasswordInput('');
+                    setPendingAction(null);
+                    setError(null);
+                  }}
+                  className='flex-1 px-4 py-3 bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold rounded-xl transition-colors'>
+                  Batal
+                </button>
+                <button
+                  onClick={verifyPassword}
+                  className='flex-1 px-4 py-3 bg-yellow-500 hover:bg-yellow-600 text-white font-semibold rounded-xl transition-colors'>
+                  Konfirmasi
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
