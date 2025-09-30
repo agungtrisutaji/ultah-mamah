@@ -1,7 +1,7 @@
 'use client';
 
 
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { ImageZoom } from '@/components/ui/shadcn-io/image-zoom';
 import Image from 'next/image';
 
@@ -10,6 +10,7 @@ interface Photo {
   src: string;
   alt: string;
   caption: string;
+  filename?: string; // Optional untuk foto yang di-upload
 }
 
 // Real photos of mama
@@ -56,14 +57,84 @@ const mamaPhotos: Photo[] = [
 export default function PhotoGallery() {
   const [uploadedPhoto, setUploadedPhoto] = useState<Photo | null>(null);
   const [error, setError] = useState<string | null>(null);
+
   const fileInputRef = useRef<HTMLInputElement>(null);
 
+  // Key untuk localStorage
 
 
-  // Handler upload
-  const handlePhotoUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+  // Load foto dari server saat komponen mount
+  useEffect(() => {
+    const loadPhotoFromServer = async () => {
+      try {
+        const response = await fetch('/api/photos');
+        const result = await response.json();
+        
+        if (result.success && result.photo) {
+          // Konversi data server ke format Photo interface
+          const serverPhoto = {
+            id: 999,
+            src: result.photo.url,
+            alt: 'Foto hari ini',
+            caption: 'Foto spesial hari ini 🎉',
+            filename: result.photo.filename
+          };
+          setUploadedPhoto(serverPhoto);
+        } else {
+          // Tidak ada foto di server
+          setUploadedPhoto(null);
+        }
+      } catch (error) {
+        console.error('Error loading photo from server:', error);
+        setUploadedPhoto(null);
+      }
+    };
+
+    loadPhotoFromServer();
+  }, []);
+
+
+
+  // Fungsi hapus file dari server
+  const deletePhotoFromServer = async (filename: string): Promise<boolean> => {
+    console.log('Attempting to delete photo:', filename);
+    try {
+      const response = await fetch('/api/delete', {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ filename }),
+      });
+
+      const result = await response.json();
+      console.log('Delete API response:', result);
+      
+      if (response.ok && result.success) {
+        console.log('Photo deleted successfully:', filename);
+        return true;
+      } else {
+        console.error('Delete error:', result.error);
+        setError(`Gagal hapus foto: ${result.error}`);
+        return false;
+      }
+    } catch (error) {
+      console.error('Delete request error:', error);
+      setError('Gagal menghapus foto dari server');
+      return false;
+    }
+  };
+
+
+
+  // Handler upload ke server
+  const handlePhotoUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
+
+    setError(null);
+
+    // Validasi client-side
     if (!file.type.startsWith('image/')) {
       setError('File harus berupa gambar');
       return;
@@ -72,17 +143,49 @@ export default function PhotoGallery() {
       setError('Ukuran gambar maksimal 5MB');
       return;
     }
-    const reader = new FileReader();
-    reader.onload = (ev) => {
-      setUploadedPhoto({
+
+    try {
+      // Hapus foto lama jika ada (saat edit/ganti)
+      if (uploadedPhoto && uploadedPhoto.filename) {
+        const deleteSuccess = await deletePhotoFromServer(uploadedPhoto.filename);
+        if (!deleteSuccess) {
+          setError('Gagal menghapus foto lama. Upload dibatalkan.');
+          return;
+        }
+      }
+
+      // Upload ke server
+      const formData = new FormData();
+      formData.append('file', file);
+
+      const response = await fetch('/api/upload', {
+        method: 'POST',
+        body: formData,
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        setError(result.error || 'Gagal upload file');
+        return;
+      }
+
+      // Simpan info foto yang berhasil di-upload
+      const newPhoto = {
         id: 999, // id khusus untuk upload hari ini
-        src: ev.target?.result as string,
+        src: result.url, // URL file di server
         alt: 'Foto hari ini',
         caption: 'Foto spesial hari ini 🎉',
-      });
+        filename: result.filename, // Simpan filename untuk referensi
+      };
+
+      setUploadedPhoto(newPhoto);
       setError(null);
-    };
-    reader.readAsDataURL(file);
+
+    } catch (error) {
+      console.error('Upload error:', error);
+      setError('Gagal upload file. Silakan coba lagi.');
+    }
   };
 
   return (
@@ -132,24 +235,71 @@ export default function PhotoGallery() {
                 />
               </ImageZoom>
               
-              {/* Edit button overlay */}
-              <button
-                onClick={() => {
-                  setUploadedPhoto(null);
-                  setError(null);
-                  if (fileInputRef.current) {
-                    fileInputRef.current.value = '';
-                  }
-                }}
-                className='absolute top-4 right-4 bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg transition-colors'
-              >
-                ✏️ Edit/Ganti
-              </button>
+              {/* Edit and Delete button overlays */}
+              <div className='absolute top-4 right-4 flex gap-2'>
+                <button
+                  onClick={() => {
+                    setError(null);
+                    if (fileInputRef.current) {
+                      fileInputRef.current.click();
+                    }
+                  }}
+                  className='bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-2 rounded-full text-sm font-semibold shadow-lg transition-colors'
+                >
+                  ✏️ Ganti
+                </button>
+                <button
+                  onClick={async () => {
+                    console.log('Delete button clicked');
+                    console.log('Current uploadedPhoto:', uploadedPhoto);
+                    if (confirm('Yakin ingin hapus foto hari ini? Foto akan hilang permanen dari server.')) {
+                      console.log('User confirmed deletion');
+                      setError(null);
+                      
+                      // Hapus file dari server
+                      if (uploadedPhoto && uploadedPhoto.filename) {
+                        console.log('Deleting photo with filename:', uploadedPhoto.filename);
+                        const deleteSuccess = await deletePhotoFromServer(uploadedPhoto.filename);
+                        
+                        if (deleteSuccess) {
+                          // Clear state hanya jika berhasil hapus dari server
+                          console.log('Photo deleted successfully, clearing state');
+                          setUploadedPhoto(null);
+                          if (fileInputRef.current) {
+                            fileInputRef.current.value = '';
+                          }
+                        } else {
+                          console.log('Failed to delete photo');
+                        }
+                      } else {
+                        // Tidak ada filename, langsung clear state
+                        console.log('No filename found, clearing state anyway');
+                        setUploadedPhoto(null);
+                        if (fileInputRef.current) {
+                          fileInputRef.current.value = '';
+                        }
+                      }
+                    } else {
+                      console.log('User cancelled deletion');
+                    }
+                  }}
+                  className='bg-red-500 hover:bg-red-600 text-white px-3 py-2 rounded-full text-sm font-semibold shadow-lg transition-colors'
+                >
+                  🗑️ Hapus
+                </button>
+              </div>
             </div>
             
             <div className='text-center'>
               <p className='text-xl font-bold text-yellow-700 mb-2'>{uploadedPhoto.caption}</p>
-              <p className='text-yellow-600'>Foto indah dari celebration hari ini! 🎉</p>
+              <p className='text-yellow-600 mb-2'>Foto indah dari celebration hari ini! 🎉</p>
+              <div className='space-y-1'>
+                <p className='text-green-600 text-sm'>✅ Foto tersimpan permanen di server</p>
+                <p className='text-blue-600 text-xs'>📁 Location: public/uploads/today/</p>
+                {uploadedPhoto.filename && (
+                  <p className='text-gray-500 text-xs'>📄 File: {uploadedPhoto.filename}</p>
+                )}
+              </div>
             </div>
             
             {/* Hidden input for re-upload */}
