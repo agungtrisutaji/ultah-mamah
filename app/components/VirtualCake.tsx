@@ -49,13 +49,13 @@ export default function VirtualCake() {
         <div className='absolute inset-0 bg-gradient-to-br from-yellow-200/90 to-orange-200/90 rounded-2xl flex items-center justify-center z-10'>
           <div className='text-center'>
             {/* Foto Agung di celebration */}
-            <div className='mb-4 flex justify-center'>
-              <div className='relative w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden border-4 border-yellow-400 shadow-lg animate-pulse'>
+            <div className='mb-6 flex justify-center'>
+              <div className='relative w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-yellow-400 shadow-2xl animate-pulse bg-white/20'>
                 <Image
-                  src='/photos/mom-me.png' // Foto Agung dan Mama
-                  alt='Agung dan Mama'
-                  width={96}
-                  height={96}
+                  src='/photos/agung.png' // Foto Agung
+                  alt='Agung'
+                  width={160}
+                  height={160}
                   className='w-full h-full object-cover'
                 />
               </div>
